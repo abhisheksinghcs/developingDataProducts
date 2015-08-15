@@ -1,0 +1,5 @@
+Welcome to the ultimate car selector!
+This application will help you select your perfect car.
+We will start by selecting the power that you are looking for Horse Power and Cylinders
+Next you can select your favorite brand and preference if you have a preference for low MPG
+Once you hit Go you are all set to see your perfect car

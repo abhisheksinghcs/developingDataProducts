@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(dplyr);library(reshape2)\n#library(png)\n\ndata <- mtcars\ndata$car <- rownames(mtcars)\n\nshinyServer(function(input, output) {\n        \n        output$mpg <- renderPrint({input$mpg})\n        output$cyl <- renderText({input$cyl})\n        output$hp <- renderText({input$hp})\n        output$carBrand <- renderText({input$carBrand})\n#         output$image <- renderImage({\n#                 return(list(src =\"car.png\", \n#                 contentType = \"image/png\"))\n#         })\n        \n        \n        #output$go <- renderPrint({input$go})\n       \n       output$table <- renderDataTable({\n                       if(input$go == 1){\n                               if(input$carBrand != \"All\"){\n                               \n                                       data <- data[grepl(input$carBrand, data$car),] \n                               }\n                               data <- subset(data, cyl <= input$cyl & hp <= input$hp, select= c(\"car\",\"mpg\",\"hp\" ,\"cyl\"))\n                               if(input$mpg == 1){ \n                                       return (data <- arrange(data, mpg))\n                               } else {return (data)}\n                               \n                               \n                       }\n        })\n        \n        \n})\n",
+    "created" : 1439495063117.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2284620220",
+    "id" : "C7BF23C6",
+    "lastKnownWriteTime" : 1439601520,
+    "path" : "~/Data/MOOC/Data Science/Developing Data Products/programmingAssignment/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "\nlibrary(shiny)\nlibrary(markdown)\n\n\ndata(\"mtcars\")\n\nbrand <- vector(\"character\")\ncars <- mtcars \ncars$name <- rownames(mtcars)\nbrand <- sapply(cars$name, function(n){ unique(strsplit(n,\" \")[[1]][1])})\nnames(brand) <- NULL\n\n\nshinyUI(fluidPage(\n        \n  # Application title\n  #titlePanel(\"My perfect car\"),\n  # How to use the application\n  sidebarPanel(\n          img(src=\"http://www.clipartbagus.com/wp-content/uploads/free-car-clipart-cars-car-clipart-automotive-cars-online-royalty-free-many-images-plrmyaah.png\", align = \"left\", width = \"120\", height = \"80\"),\n          #img(src = \"./car.png\", width = \"100\", height = \"80\", align = \"left\"),\n          \n          \n          \n          #imageOutput(\"image\"),\n          column(12,\n                 includeHTML(\"include.html\")\n                 \n                 )\n  ),\n\n  # Get the criteria for selecting the cars\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"hp\",\n                  \"Choose the HP:\",\n                  min = 52,\n                  max = 335,\n                  value = 142, \n                  step = 20),\n      sliderInput(\"cyl\", \"Choose number of Cylinders:\",\n                  min = 4, \n                  max = 8,\n                  value = 4,\n                  step = 2),\n      selectInput(\"carBrand\", \"Select the Brand\", choices = c(\"All\",brand), multiple = FALSE),\n      radioButtons(\"mpg\", label = (\"mpg\"),\n                   choices = list(\"Important\" = 1, \"Don't care\" = 2), \n                   selected = 2),\n      actionButton(\"go\", \"Go!\")\n),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n           \n         dataTableOutput(outputId=\"table\")\n          \n    )\n  )\n))\n",
+    "created" : 1439495062406.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3312846655",
+    "id" : "CB400C13",
+    "lastKnownWriteTime" : 1439601532,
+    "path" : "~/Data/MOOC/Data Science/Developing Data Products/programmingAssignment/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
